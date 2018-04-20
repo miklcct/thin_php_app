@@ -1,0 +1,20 @@
+{
+    "name" : "thin_php_app",
+    "description" : "A minimal PHP application framework",
+    "type" : "library",
+    "keywords" : ["framework", "app"],
+    "license" : ["BSD-4-Clause"],
+    "authors" : [
+        {
+            "name" : "Michael Tsang",
+            "email" : "miklcct@gmail.com",
+            "homepage" : "https://miklcct.com/",
+            "role" : "developer"
+        }
+    ],
+    "autoload" : {
+        "psr-4" : {
+            "Miklcct/ThinPhpApp" : "src/"
+        }
+    }
+}
