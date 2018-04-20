@@ -14,7 +14,10 @@
     ],
     "autoload" : {
         "psr-4" : {
-            "Miklcct/ThinPhpApp" : "src/"
+            "Miklcct\\ThinPhpApp\\" : "src/"
         }
+    },
+    "require": {
+        "php-di/php-di": "^6.0"
     }
 }
