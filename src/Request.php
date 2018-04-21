@@ -38,6 +38,30 @@ class Request
         $this->input = $input ?? file_get_contents('php://input');
     }
 
+    public function get(string $key) : ?string {
+        return $this->get[$key] ?? NULL;
+    }
+
+    public function post(string $key) : ?string {
+        return $this->post[$key] ?? NULL;
+    }
+
+    public function cookie(string $key) : ?string {
+        return $this->cookie[$key] ?? NULL;
+    }
+
+    public function files(string $key) : ?string {
+        return $this->files[$key] ?? NULL;
+    }
+
+    public function server(string $key) : ?string {
+        return $this->server[$key] ?? NULL;
+    }
+
+    public function getRemoteIpAddress() : string {
+        return $this->server('REMOTE_ADDR');
+    }
+
     /** @var array */
     private $get;
     /** @var array */

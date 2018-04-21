@@ -173,8 +173,8 @@ class Response
     ];
 
     public function __construct(
-        int $status = self::HTTP_OK
-        , string $content = ''
+        string $content = ''
+        , int $status = self::HTTP_OK
         , array $headers = []
         , array $cookies = []
     ) {
@@ -186,7 +186,7 @@ class Response
     }
 
     public function send() {
-
+        echo $this->content;
     }
 
     public function getStatus() : int {

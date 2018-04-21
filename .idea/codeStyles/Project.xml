@@ -1,11 +1,15 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
+    <HTMLCodeStyleSettings>
+      <option name="HTML_DO_NOT_INDENT_CHILDREN_OF" value="" />
+    </HTMLCodeStyleSettings>
     <PHPCodeStyleSettings>
       <option name="COMMA_AFTER_LAST_ARRAY_ELEMENT" value="true" />
       <option name="UPPER_CASE_BOOLEAN_CONST" value="true" />
       <option name="UPPER_CASE_NULL_CONST" value="true" />
       <option name="VARIABLE_NAMING_STYLE" value="SNAKE_CASE" />
       <option name="KEEP_RPAREN_AND_LBRACE_ON_ONE_LINE" value="true" />
+      <option name="KEEP_BLANK_LINES_AFTER_LBRACE" value="1" />
       <option name="FORCE_SHORT_DECLARATION_ARRAY_STYLE" value="true" />
       <option name="SPACE_BEFORE_COLON_IN_RETURN_TYPE" value="true" />
       <option name="IF_LPAREN_ON_NEXT_LINE" value="true" />
@@ -19,6 +23,9 @@
       </indentOptions>
     </codeStyleSettings>
     <codeStyleSettings language="PHP">
+      <option name="KEEP_BLANK_LINES_IN_DECLARATIONS" value="1" />
+      <option name="KEEP_BLANK_LINES_IN_CODE" value="1" />
+      <option name="KEEP_BLANK_LINES_BEFORE_RBRACE" value="1" />
       <option name="CLASS_BRACE_STYLE" value="1" />
       <option name="METHOD_BRACE_STYLE" value="1" />
       <option name="INDENT_CASE_FROM_SWITCH" value="false" />
