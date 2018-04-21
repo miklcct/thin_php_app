@@ -12,7 +12,7 @@ class HelloView extends View {
     }
 
     public function getPathToTemplate() : string {
-        return __DIR__ . '/hello.phtml';
+        return __DIR__ . '/../view/hello.phtml';
     }
 
     /** @var string */

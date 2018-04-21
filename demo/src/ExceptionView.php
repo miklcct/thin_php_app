@@ -7,6 +7,6 @@ use Miklcct\ThinPhpApp\View\ExceptionView as Base;
 
 class ExceptionView extends Base {
     public function getPathToTemplate() : string {
-        return __DIR__ . '/exception.phtml';
+        return __DIR__ . '/../view/exception.phtml';
     }
 }

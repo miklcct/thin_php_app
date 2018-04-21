@@ -34,3 +34,4 @@ If you need to use SEO friendly URL, please use path info and web server rewrite
 blog page accessible under `http://example.com/article/2018/01/24/hello-world`, please create `article.php` under your
 document root, set up your web server to rewrite /article to /article.php
 
+Please refer to `demo` folder for how this framework works.

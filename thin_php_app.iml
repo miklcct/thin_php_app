@@ -4,7 +4,7 @@
     <exclude-output />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="Miklcct\ThinPhpApp\" />
-      <sourceFolder url="file://$MODULE_DIR$/demo" isTestSource="false" packagePrefix="Miklcct\ThinPhpApp\Demo\" />
+      <sourceFolder url="file://$MODULE_DIR$/demo/src" isTestSource="false" packagePrefix="Miklcct\ThinPhpApp\Demo\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/composer" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/jeremeamia/SuperClosure" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/nikic/php-parser" />
