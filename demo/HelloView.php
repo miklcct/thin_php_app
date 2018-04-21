@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Miklcct\ThinPhpApp\Demo;
 
-use Miklcct\ThinPhpApp\View;
+use Miklcct\ThinPhpApp\View\View;
 
 class HelloView extends View {
     public function __construct(string $ipAddress) {
@@ -15,5 +15,5 @@ class HelloView extends View {
     }
 
     /** @var string */
-    private $ipAddress;
+    protected $ipAddress;
 }

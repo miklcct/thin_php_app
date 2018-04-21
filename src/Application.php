@@ -3,6 +3,8 @@
 declare(strict_types=1);
 
 namespace Miklcct\ThinPhpApp;
+use Miklcct\ThinPhpApp\Http\Request;
+use Miklcct\ThinPhpApp\Http\Response;
 
 /**
  * Main application class

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Miklcct\ThinPhpApp;
+namespace Miklcct\ThinPhpApp\Http;
 
 /**
  * An HTTP request

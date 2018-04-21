@@ -1,8 +1,14 @@
 <?php
 declare(strict_types=1);
 
-namespace Miklcct\ThinPhpApp;
+namespace Miklcct\ThinPhpApp\View;
 
+/**
+ * Base class for all views
+ *
+ * In order to create a view, extend this class, pass the view data in constructor
+ * @package Miklcct\ThinPhpApp\View
+ */
 abstract class View {
     abstract public function getPathToTemplate() : string;
 

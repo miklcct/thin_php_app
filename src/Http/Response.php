@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Miklcct\ThinPhpApp;
+namespace Miklcct\ThinPhpApp\Http;
 
 /**
  * Class Response
@@ -186,6 +186,10 @@ class Response
     }
 
     public function send() {
+        http_response_code($this->getStatus());
+        foreach ($this->headers as $key => $value) {
+            header("$key: $value");
+        }
         echo $this->content;
     }
 

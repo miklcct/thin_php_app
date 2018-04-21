@@ -1,0 +1,19 @@
+<?php
+declare(strict_types=1);
+
+use Miklcct\ThinPhpApp\Demo\ExceptionView;
+
+/** @var ExceptionView $this */
+?>
+<html>
+    <head>
+        <title>An error occurred</title>
+    </head>
+    <body>
+        <h1>Oops, an error has been occurred!</h1>
+        <h2>Details</h2>
+        <p><code><?= e($this->exception->getFile() . ':' . $this->exception->getLine() . ': ' . $this->exception->getMessage()) ?></code></p>
+        <h3>Stack trace</h3>
+        <pre><?= e($this->exception->getTraceAsString()) ?></pre>
+    </body>
+</html>
