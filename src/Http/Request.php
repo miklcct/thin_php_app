@@ -33,33 +33,36 @@ class Request
         $this->get = $get ?? $_GET;
         $this->post = $post ?? $_POST;
         $this->cookie = $cookie ?? $_COOKIE;
-        $this->files = $files ?? $_FILES;
+        $this->files = [];
+        foreach ($files ?? $_FILES as $key => $data) {
+            $this->files[$key] = new File($key, $data);
+        }
         $this->server = $server ?? $_SERVER;
         $this->input = $input ?? file_get_contents('php://input');
     }
 
-    public function get(string $key) : ?string {
-        return $this->get[$key] ?? NULL;
+    public function get() : array {
+        return $this->get;
     }
 
-    public function post(string $key) : ?string {
-        return $this->post[$key] ?? NULL;
+    public function post() : array {
+        return $this->post;
     }
 
-    public function cookie(string $key) : ?string {
-        return $this->cookie[$key] ?? NULL;
+    public function cookie() : array {
+        return $this->cookie;
     }
 
-    public function files(string $key) : ?string {
-        return $this->files[$key] ?? NULL;
+    public function files() : array {
+        return $this->files;
     }
 
-    public function server(string $key) : ?string {
-        return $this->server[$key] ?? NULL;
+    public function server() : array {
+        return $this->server;
     }
 
     public function getRemoteIpAddress() : string {
-        return $this->server('REMOTE_ADDR');
+        return $this->server()['REMOTE_ADDR'];
     }
 
     /** @var array */
@@ -68,7 +71,7 @@ class Request
     private $post;
     /** @var array */
     private $cookie;
-    /** @var array */
+    /** @var File[] */
     private $files;
     /** @var array */
     private $server;

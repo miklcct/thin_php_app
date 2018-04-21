@@ -172,21 +172,35 @@ class Response
         self::HTTP_NETWORK_AUTHENTICATION_REQUIRED => 'Network Authentication Required', // RFC6585
     ];
 
+    /**
+     * Response constructor.
+     * @param string $content The response content
+     * @param int $status The HTTP status code to be sent
+     * @param array $headers An associative array of headers
+     * @param Cookie[] $cookies An array of cookies for the response
+     * @param string|null $protocol The protocol this response will be sent, e.g. HTTP/1.1
+     */
     public function __construct(
         string $content = ''
         , int $status = self::HTTP_OK
         , array $headers = []
         , array $cookies = []
+        , string $protocol = NULL
     ) {
         $this->status = $status;
         $this->statusText = self::HTTP_STATUS_TEXTS[$status] ?? '';
         $this->content = $content;
         $this->headers = $headers;
-        $this->cookies = $cookies;
+        $this->cookies = [];
+        foreach ($cookies as $cookie) {
+            assert($cookie instanceof Cookie);
+            $this->cookies[$cookie->getName()] = $cookie;
+        }
+        $this->protocol = $protocol ?? $_SERVER['SERVER_PROTOCOL'];
     }
 
     public function send() {
-        http_response_code($this->getStatus());
+        header("$this->protocol $this->status $this->statusText");
         foreach ($this->headers as $key => $value) {
             header("$key: $value");
         }
@@ -213,6 +227,10 @@ class Response
         return $this->cookies;
     }
 
+    public function getProtocol() : string {
+        return $this->protocol;
+    }
+
     /** @var int */
     private $status;
     /** @var string */
@@ -223,5 +241,7 @@ class Response
     private $headers;
     /** @var array */
     private $cookies;
+    /** @var string */
+    private $protocol;
 
 }
