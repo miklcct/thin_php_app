@@ -48,3 +48,7 @@ function get_exception_handler_for_view(string $view_class) {
         )->send();
     };
 }
+
+function nullable($object, callable $callback) {
+    return $object !== NULL ? $callback($object) : NULL;
+}

@@ -22,6 +22,7 @@
         ]
     },
     "require": {
-        "php-di/php-di": "^6.0"
+        "php-di/php-di": "^6.0",
+        "ralouphie/getallheaders": "^2.0"
     }
 }

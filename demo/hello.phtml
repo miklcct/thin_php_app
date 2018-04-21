@@ -17,6 +17,9 @@ use Miklcct\ThinPhpApp\Demo\HelloView;
             The server time now is <?= e(strftime('%c')) ?>.
         </p>
         <p>
+            The URL of this page is <a href="<?= e($this->url) ?>"><?= e($this->url) ?></a>.
+        </p>
+        <p>
             You are visiting this page from IP address <?= e($this->ipAddress) ?>.
         </p>
     </body>

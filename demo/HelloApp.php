@@ -9,6 +9,6 @@ use Miklcct\ThinPhpApp\Http\Response;
 
 class HelloApp extends Application {
     public function run(Request $request) : Response {
-        return new Response((new HelloView($request->getRemoteIpAddress()))->render());
+        return new Response((new HelloView($request->getClientAddress(), $request->getUrl()))->render());
     }
 }
