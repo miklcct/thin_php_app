@@ -39,6 +39,18 @@ class Request
         }
         $this->server = $server ?? $_SERVER;
         $this->input = $input ?? file_get_contents('php://input');
+        $this->headers = [];
+        foreach($this->server as $key => $value) {
+            if (substr($key, 0, 5) !== 'HTTP_') {
+                continue;
+            }
+            $header = str_replace(
+                ' '
+                , '-'
+                , ucwords(str_replace('_', ' ', strtolower(substr($key, 5))))
+            );
+            $this->headers[$header] = $value;
+        }
     }
 
     public function get() : array {
@@ -62,6 +74,10 @@ class Request
 
     public function server() : array {
         return $this->server;
+    }
+
+    public function headers() : array {
+        return $this->headers;
     }
 
     public function getGatewayInterface() : ?string {
@@ -196,4 +212,6 @@ class Request
     private $server;
     /** @var string */
     private $input;
+    /** @var array */
+    private $headers;
 }
