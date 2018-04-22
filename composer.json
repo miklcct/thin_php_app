@@ -1,5 +1,5 @@
 {
-    "name" : "thin_php_app",
+    "name" : "miklcct/thin_php_app",
     "description" : "A minimal PHP application framework",
     "type" : "library",
     "keywords" : ["framework", "app"],
