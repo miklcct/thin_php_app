@@ -12,7 +12,7 @@ use Miklcct\ThinPhpApp\Http\Response;
  * To create a PHP application, subclass this, create an instance in the entry point, and call the run method
  * @package Miklcct\ThinPhpApp
  */
-class Application
+abstract class Application
 {
     /**
      * Run the application
@@ -20,7 +20,5 @@ class Application
      * @param Request $request
      * @return Response
      */
-    public function run(Request $request) : Response {
-        return new Response();
-    }
+    abstract public function run(Request $request);
 }
