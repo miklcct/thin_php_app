@@ -22,6 +22,7 @@
         ]
     },
     "require": {
+        "php" : ">=7.1",
         "ralouphie/getallheaders": "^2.0",
         "psr/http-server-handler": "^1.0",
         "psr/http-server-middleware": "^1.0",
