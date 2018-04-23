@@ -185,9 +185,7 @@ function get_path_info(ServerRequestInterface $request) : ?string {
 }
 
 function get_url(ServerRequestInterface $request) : string {
-    return (is_secure($request) ? 'https://' : 'http://')
-        . (get_host($request) ?? get_server_address($request) ?? 'localhost')
-        . get_request_uri($request);
+    return $request->getUri()->__toString();
 }
 
 function is_on_default_port(ServerRequestInterface $request) : ?bool {
