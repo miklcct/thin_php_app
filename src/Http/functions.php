@@ -119,7 +119,7 @@ function get_query_string(ServerRequestInterface $request) : ?string {
 
 // TODO: accept headers
 
-function get_server_host_name(ServerRequestInterface $request) : string {
+function get_host(ServerRequestInterface $request) : string {
     return $request->getHeaderLine('Host');
 }
 
@@ -139,7 +139,7 @@ function get_client_address(ServerRequestInterface $request) : ?string {
     return $request->getServerParams()['REMOTE_ADDR'] ?? NULL;
 }
 
-function get_client_host_name(ServerRequestInterface $request) : ?string {
+function get_client_name(ServerRequestInterface $request) : ?string {
     return $request->getServerParams()['REMOTE_HOST'] ?? NULL;
 }
 
@@ -186,8 +186,7 @@ function get_path_info(ServerRequestInterface $request) : ?string {
 
 function get_url(ServerRequestInterface $request) : string {
     return (is_secure($request) ? 'https://' : 'http://')
-        . (get_server_host_name($request) ?? get_server_address($request) ?? 'localhost')
-        . (is_on_default_port($request) === FALSE ? ':' . get_server_port($request) : '')
+        . (get_host($request) ?? get_server_address($request) ?? 'localhost')
         . get_request_uri($request);
 }
 
