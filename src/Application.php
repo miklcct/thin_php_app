@@ -28,7 +28,7 @@ abstract class Application implements RequestHandlerInterface
                 }
 
                 public function handle(ServerRequestInterface $request) : ResponseInterface {
-                    return $this->handle($request);
+                    return ($this->handle)($request);
                 }
 
                 /** @var callable */
