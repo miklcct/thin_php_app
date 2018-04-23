@@ -13,5 +13,5 @@ use Throwable;
  * @package Miklcct\ThinPhpApp\View
  */
 interface ExceptionViewFactory {
-    public function makeView(Throwable $exception) : View;
+    public function __invoke(Throwable $exception) : View;
 }

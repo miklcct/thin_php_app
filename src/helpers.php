@@ -44,7 +44,7 @@ function get_exception_handler_for_view(ExceptionViewFactory $view_factory, Resp
         }
         $response = $response_factory->createResponse(
             $exception instanceof HttpException ? $exception->getCode() : StatusCode::INTERNAL_SERVER_ERROR
-        )->withBody($view_factory->makeView($exception)->render());
+        )->withBody($view_factory($exception)->render());
         send($response);
     };
 }
