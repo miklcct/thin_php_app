@@ -1,11 +1,15 @@
 <?php
 declare(strict_types=1);
 
+namespace Miklcct\ThinPhpApp;
+
+use ErrorException;
 use Interop\Http\Factory\ResponseFactoryInterface;
 use Miklcct\ThinPhpApp\View\ExceptionView;
 use Teapot\HttpException;
 use Teapot\StatusCode;
 use function Http\Response\send;
+use Throwable;
 
 /**
  * Escape text for safe output
