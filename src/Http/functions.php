@@ -97,7 +97,7 @@ function get_server_port(ServerRequestInterface $request) : ?int {
     );
 }
 
-function get_server_host_name(ServerRequestInterface $request) : ?string {
+function get_server_name(ServerRequestInterface $request) : ?string {
     return $request->getServerParams()['SERVER_NAME'] ?? NULL;
 }
 
@@ -119,16 +119,16 @@ function get_query_string(ServerRequestInterface $request) : ?string {
 
 // TODO: accept headers
 
-function get_host(ServerRequestInterface $request) : ?string {
-    return $request->getServerParams()['HTTP_HOST'] ?? NULL;
+function get_server_host_name(ServerRequestInterface $request) : string {
+    return $request->getHeaderLine('Host');
 }
 
-function get_referrer(ServerRequestInterface $request) : ?string {
-    return $request->getServerParams()['HTTP_REFERER'] ?? NULL;
+function get_referrer(ServerRequestInterface $request) : string {
+    return $request->getHeaderLine('Referer');
 }
 
-function get_user_agent(ServerRequestInterface $request) : ?string {
-    return $request->getServerParams()['HTTP_USER_AGENT'] ?? NULL;
+function get_user_agent(ServerRequestInterface $request) : string {
+    return $request->getHeaderLine('User-Agent');
 }
 
 function is_secure(ServerRequestInterface $request) : bool {
@@ -186,7 +186,7 @@ function get_path_info(ServerRequestInterface $request) : ?string {
 
 function get_url(ServerRequestInterface $request) : string {
     return (is_secure($request) ? 'https://' : 'http://')
-        . (get_host($request) ?? get_server_host_name($request) ?? get_server_address($request) ?? 'localhost')
+        . (get_server_host_name($request) ?? get_server_address($request) ?? 'localhost')
         . (is_on_default_port($request) === FALSE ? ':' . get_server_port($request) : '')
         . get_request_uri($request);
 }
