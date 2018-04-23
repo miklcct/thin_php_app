@@ -3,22 +3,43 @@
 declare(strict_types=1);
 
 namespace Miklcct\ThinPhpApp;
-use Miklcct\ThinPhpApp\Http\Request;
-use Miklcct\ThinPhpApp\Http\Response;
+use Closure;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * Main application class
  *
- * To create a PHP application, subclass this, create an instance in the entry point, and call the run method
+ * To create a PHP application, subclass this, implement the run method with controller code, add middlewares into
+ * getMiddlewares, create an instance in the entry point and call the handle method.
+ *
  * @package Miklcct\ThinPhpApp
  */
-abstract class Application
+abstract class Application implements RequestHandlerInterface
 {
-    /**
-     * Run the application
-     *
-     * @param Request $request
-     * @return Response
-     */
-    abstract public function run(Request $request);
+    public function handle(ServerRequestInterface $request) : ResponseInterface {
+        $handle = Closure::fromCallable([$this, 'run']);
+        return MiddlewareApplication::bindMultiple(
+            $this->getMiddlewares()
+            , new class($handle) implements RequestHandlerInterface {
+                public function __construct(callable $handle) {
+                    $this->handle = $handle;
+                }
+
+                public function handle(ServerRequestInterface $request) : ResponseInterface {
+                    return $this->handle($request);
+                }
+
+                /** @var callable */
+                private $handle;
+            }
+        )->handle($request);
+    }
+
+    abstract protected function run(ServerRequestInterface $request) : ResponseInterface;
+
+    protected function getMiddlewares() : array {
+        return [];
+    }
 }

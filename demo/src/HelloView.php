@@ -3,9 +3,9 @@ declare(strict_types=1);
 
 namespace Miklcct\ThinPhpApp\Demo;
 
-use Miklcct\ThinPhpApp\View\View;
+use Miklcct\ThinPhpApp\View\PhpTemplate;
 
-class HelloView extends View {
+class HelloView extends PhpTemplate {
     public function __construct(string $ipAddress, string $url) {
         $this->ipAddress = $ipAddress;
         $this->url = $url;

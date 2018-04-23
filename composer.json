@@ -23,6 +23,11 @@
     },
     "require": {
         "php-di/php-di": "^6.0",
-        "ralouphie/getallheaders": "^2.0"
+        "ralouphie/getallheaders": "^2.0",
+        "psr/http-server-handler": "^1.0",
+        "psr/http-server-middleware": "^1.0",
+        "http-interop/http-factory": "^0.3.0",
+        "shrikeh/teapot": "^2.3",
+        "http-interop/response-sender": "^1.0"
     }
 }

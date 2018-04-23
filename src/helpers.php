@@ -1,9 +1,11 @@
 <?php
 declare(strict_types=1);
 
-use Miklcct\ThinPhpApp\Exception\HttpExceptionInterface;
-use Miklcct\ThinPhpApp\Http\Response;
-use Miklcct\ThinPhpApp\View\View;
+use Interop\Http\Factory\ResponseFactoryInterface;
+use Miklcct\ThinPhpApp\View\ExceptionView;
+use Teapot\HttpException;
+use Teapot\StatusCode;
+use function Http\Response\send;
 
 /**
  * Escape text for safe output
@@ -31,21 +33,16 @@ function exception_error_handler(int $severity, string $message, string $file, i
     }
 }
 
-function get_exception_handler_for_view(string $view_class) {
-    return function (Throwable $e) use ($view_class) {
+function get_exception_handler_for_view(ExceptionView $view, ResponseFactoryInterface $factory) {
+    return function (Throwable $exception) use ($view, $factory) {
         while (ob_get_level()) {
             ob_end_clean();
         }
-        $view = new $view_class($e);
-        assert($view instanceof View);
-        (
-            new Response(
-                $view->render()
-                , $e instanceof HttpExceptionInterface
-                    ? $e->getStatusCode()
-                    : Response::HTTP_INTERNAL_SERVER_ERROR
-            )
-        )->send();
+        $view->setException($exception);
+        $response = $factory->createResponse(
+            $exception instanceof HttpException ? $exception->getCode() : StatusCode::INTERNAL_SERVER_ERROR
+        )->withBody($view->render());
+        send($response);
     };
 }
 

@@ -12,6 +12,13 @@
       <path value="$PROJECT_DIR$/vendor/jeremeamia/SuperClosure" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-util" />
       <path value="$PROJECT_DIR$/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-server-handler" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/vendor/psr/http-server-middleware" />
+      <path value="$PROJECT_DIR$/vendor/http-interop/http-factory" />
+      <path value="$PROJECT_DIR$/vendor/teapot/status-code" />
+      <path value="$PROJECT_DIR$/vendor/shrikeh/teapot" />
+      <path value="$PROJECT_DIR$/vendor/http-interop/response-sender" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
