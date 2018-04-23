@@ -5,7 +5,7 @@ namespace Miklcct\ThinPhpApp;
 
 use ErrorException;
 use Interop\Http\Factory\ResponseFactoryInterface;
-use Miklcct\ThinPhpApp\View\ExceptionView;
+use Miklcct\ThinPhpApp\View\ExceptionViewFactory;
 use Teapot\HttpException;
 use Teapot\StatusCode;
 use function Http\Response\send;
@@ -37,15 +37,14 @@ function exception_error_handler(int $severity, string $message, string $file, i
     }
 }
 
-function get_exception_handler_for_view(ExceptionView $view, ResponseFactoryInterface $factory) {
-    return function (Throwable $exception) use ($view, $factory) {
+function get_exception_handler_for_view(ExceptionViewFactory $view_factory, ResponseFactoryInterface $response_factory) {
+    return function (Throwable $exception) use ($view_factory, $response_factory) {
         while (ob_get_level()) {
             ob_end_clean();
         }
-        $view->setException($exception);
-        $response = $factory->createResponse(
+        $response = $response_factory->createResponse(
             $exception instanceof HttpException ? $exception->getCode() : StatusCode::INTERNAL_SERVER_ERROR
-        )->withBody($view->render());
+        )->withBody($view_factory->makeView($exception)->render());
         send($response);
     };
 }
