@@ -21,7 +21,6 @@
         ]
     },
     "require": {
-        "php-di/php-di": "^6.0",
         "ralouphie/getallheaders": "^2.0",
         "psr/http-server-handler": "^1.0",
         "psr/http-server-middleware": "^1.0",
