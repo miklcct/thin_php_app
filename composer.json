@@ -2,7 +2,7 @@
     "name" : "miklcct/thin_php_app",
     "description" : "A minimal PHP application framework",
     "type" : "library",
-    "keywords" : ["framework", "app"],
+    "keywords" : ["framework", "app", "psr-15"],
     "license" : ["BSD-4-Clause"],
     "authors" : [
         {
