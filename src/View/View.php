@@ -28,4 +28,9 @@ interface View {
      * @return string
      */
     public function __toString() : string;
+
+    /**
+     * Get the content type of the view
+     */
+    public function getContentType() : ?string;
 }

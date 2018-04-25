@@ -30,6 +30,10 @@ abstract class PhpTemplate implements Template {
         return $result;
     }
 
+    public function getContentType() : ?string {
+        return 'text/html; charset=utf-8';
+    }
+
     protected function getStreamFactory() : StreamFactoryInterface {
         return $this->streamFactory;
     }

@@ -9,7 +9,8 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 /**
- * Application to bind a middleware on top of an application
+ * An application with a middleware bounded
+ *
  * @package Miklcct\ThinPhpApp
  */
 class MiddlewareApplication implements RequestHandlerInterface {
@@ -17,8 +18,8 @@ class MiddlewareApplication implements RequestHandlerInterface {
      * Bind multiple middlewares on top of an application
      *
      * @param array $middlewares Middleware sorted from the outermost (first in last out).
-     * @param RequestHandlerInterface $application
-     * @return RequestHandlerInterface
+     * @param RequestHandlerInterface $application The original application
+     * @return RequestHandlerInterface The application with the middlewares added
      */
     public static function bindMultiple(array $middlewares, RequestHandlerInterface $application) : RequestHandlerInterface {
         return array_reduce(
@@ -41,11 +42,6 @@ class MiddlewareApplication implements RequestHandlerInterface {
         $this->application = $application;
     }
 
-    /**
-     * Handle the request and return a response.
-     * @param ServerRequestInterface $request
-     * @return ResponseInterface
-     */
     public function handle(ServerRequestInterface $request) : ResponseInterface {
         return $this->middleware->process($request, $this->application);
     }
