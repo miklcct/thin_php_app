@@ -11,7 +11,7 @@ use Psr\Http\Message\StreamInterface;
  * In order to create a view using .phtml template, extend this class, pass the view data in constructor
  * @package Miklcct\ThinPhpApp\View
  */
-abstract class PhpTemplate implements Template {
+abstract class PhpTemplate extends AbstractView implements Template {
     public function __construct(StreamFactoryInterface $factory) {
         $this->factory = $factory;
     }
