@@ -288,8 +288,20 @@ function get_request_uri(ServerRequestInterface $request) : ?string {
  * @param ServerRequestInterface $request
  * @return null|string e.g. "john"
  */
-function get_remote_user(ServerRequestInterface $request) : ?string {
+function get_external_auth_user(ServerRequestInterface $request) : ?string {
     return $request->getServerParams()['REMOTE_USER'] ?? $request->getServerParams()['REDIRECT_REMOTE_USER'] ?? NULL;
+}
+
+/**
+ * Get the authentication type from the web server
+ *
+ * This value is only given for external authentication
+ *
+ * @param ServerRequestInterface $request
+ * @return null|string
+ */
+function get_external_auth_type(ServerRequestInterface $request) : ?string {
+    return $request->getServerParams()['AUTH_TYPE'] ?? NULL;
 }
 
 /**
@@ -326,18 +338,6 @@ function get_auth_password(ServerRequestInterface $request) : ?string {
  */
 function get_auth_digest(ServerRequestInterface $request) : ?string {
     return $request->getServerParams()['PHP_AUTH_DIGEST'] ?? NULL;
-}
-
-/**
- * Get the authentication type of the script from the web server
- *
- * This value is only given for external authentication
- *
- * @param ServerRequestInterface $request
- * @return null|string
- */
-function get_auth_type(ServerRequestInterface $request) : ?string {
-    return $request->getServerParams()['AUTH_TYPE'] ?? NULL;
 }
 
 /**
