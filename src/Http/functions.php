@@ -344,8 +344,8 @@ function get_auth_type(ServerRequestInterface $request) : ?string {
  * Get the path info of the request
  *
  * The path info is defined as the path segments after the script.
- * For example, if your script is located at <code>"/example/index.php"</code> under the document root,
- * and the request URI is <code>"/example/index.php/2010/03/02/hello-world"</code>,
+ * For example, if your script is located at <code>/example/index.php</code> under the document root,
+ * and the request URI is <code>/example/index.php/2010/03/02/hello-world</code>,
  * the path info would be "<code>/2010/03/02/hello-world</code>"
  *
  * @param ServerRequestInterface $request
@@ -353,6 +353,24 @@ function get_auth_type(ServerRequestInterface $request) : ?string {
  */
 function get_path_info(ServerRequestInterface $request) : ?string {
     return $request->getServerParams()['ORIG_PATH_INFO'] ?? $request->getServerParams()['PATH_INFO'] ?? NULL;
+}
+
+/**
+ * Get the translated path info of the request
+ *
+ * The translated path info is the path info under the document root. This is useful to scripts which need to
+ * take files under the document root for further processing.
+ *
+ * For example, if the document root is <code>/srv/http</code>,
+ * your script is located at <code>/srv/http/tools/convert_to_pdf.php</code>,
+ * and the request URI is <code>/tools/convert_to_pdf.php/documents/report.docx</code>,
+ * the translated path info would be <code>/srv/http/documents/report.docx</code>
+ *
+ * @param ServerRequestInterface $request
+ * @return null|string
+ */
+function get_path_translated(ServerRequestInterface $request) : ?string {
+    return $request->getServerParams()['PATH_TRANSLATED'] ?? NULL;
 }
 
 /**
