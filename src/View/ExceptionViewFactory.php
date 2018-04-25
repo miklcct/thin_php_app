@@ -6,12 +6,18 @@ namespace Miklcct\ThinPhpApp\View;
 use Throwable;
 
 /**
- * Interface for generating exception views
+ * Factory for generating exception views
  *
- * Applications are recommended to set up exception response returning an object implementing this
+ * An instance of this factory can be used in the exception handler to produce views for exceptions.
  *
  * @package Miklcct\ThinPhpApp\View
  */
 interface ExceptionViewFactory {
+    /**
+     * Make a view for an exception
+     *
+     * @param Throwable $exception
+     * @return View
+     */
     public function __invoke(Throwable $exception) : View;
 }

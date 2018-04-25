@@ -3,29 +3,39 @@ declare(strict_types=1);
 
 namespace Miklcct\ThinPhpApp\View;
 use Interop\Http\Factory\StreamFactoryInterface;
-use Psr\Http\Message\StreamInterface;
 
 /**
- * Base class for PHP template (.phtml) views
+ * View for PHP templates (commonly stored as .phtml extension)
  *
- * In order to create a view using .phtml template, extend this class, pass the view data in constructor
+ * If the template does not need any data, implementing {@link getPathToTemplate()} method is enough to complete
+ * the view.
+ *
+ * If the template needs data, you are recommended to override the constructor such that the data is passed into
+ * the view in the required types.
+ *
  * @package Miklcct\ThinPhpApp\View
  */
-abstract class PhpTemplate extends AbstractView implements Template {
-    public function __construct(StreamFactoryInterface $factory) {
-        $this->factory = $factory;
+abstract class PhpTemplate implements Template {
+    use StringToStream;
+
+    public function __construct(StreamFactoryInterface $streamFactory) {
+        $this->streamFactory = $streamFactory;
     }
 
-    public function render() : StreamInterface {
+    public function __toString() : string {
         ob_start();
         require $this->getPathToTemplate();
         $result = ob_get_contents();
         ob_end_clean();
-        return $this->factory->createStream($result);
+        return $result;
+    }
+
+    protected function getStreamFactory() : StreamFactoryInterface {
+        return $this->streamFactory;
     }
 
     /**
      * @var StreamFactoryInterface
      */
-    private $factory;
+    private $streamFactory;
 }
