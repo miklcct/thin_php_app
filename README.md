@@ -22,8 +22,8 @@ should be injected to the constructor of your concrete Application, and it recei
 when run.
 2. Create views by writing templates and subclassing the provided abstract `View` (for non-template views),
 `Template` (for templates in any language) or `PhpTemplate` (for PHP templates) class.
-The view data for PHP templates should be declared as protected member variables in your concrete view, which is accessible in the
-template by `$this->parameter`. A helper function `e()` is provided for easy output escaping.
+The view data for PHP templates should be declared as protected members in your concrete view, which is accessible in the
+template by `$this->parameter`. Helper functions are provided for easy output escaping.
 3. Create the entry point to start the application, which is accessible under the document root. The entry point should:
     1. `require` the composer autoloader.
     2. Set up error and exception handlers (optional).
@@ -41,5 +41,7 @@ work specific to that route.
 If you need to use SEO friendly URL, please use path info and web server rewrite. For example, if you want a specific
 blog page accessible under `http://example.com/article/2018/01/24/hello-world`, please create `article.php` under your
 document root, set up your web server to rewrite /article to /article.php
+
+Alternatively, you can install a router as a middleware in the application.
 
 Please refer to `miklcct/thin_php_app_demo` repository for how this framework works.
