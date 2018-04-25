@@ -17,7 +17,8 @@
             "Miklcct\\ThinPhpApp\\" : "src/"
         },
         "files" : [
-            "src/helpers.php",
+            "src/Escapers/functions.php",
+            "src/functions.php",
             "src/Http/functions.php"
         ]
     },
