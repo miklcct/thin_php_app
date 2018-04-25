@@ -1,8 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Miklcct\ThinPhpApp\View;
+namespace Miklcct\ThinPhpApp\Factory;
 use Interop\Http\Factory\ResponseFactoryInterface;
+use Miklcct\ThinPhpApp\View\View;
 use Psr\Http\Message\ResponseInterface;
 
 class ViewResponseFactory implements ViewResponseFactoryInterface {

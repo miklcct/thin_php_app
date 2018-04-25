@@ -7,7 +7,7 @@ use InvalidArgumentException;
 /**
  * Escape text for HTML5
  *
- * @param string $text
+ * @param string|mixed $text
  * @param callable|NULL $escaper
  * @return string
  */
@@ -18,7 +18,7 @@ function html($text) : string {
 /**
  * Escape text for XML
  *
- * @param $text
+ * @param string|mixed $text
  * @return string
  */
 function xml($text) : string {
@@ -38,7 +38,7 @@ function xml($text) : string {
  *
  * @see json()
  *
- * @param $text
+ * @param string|mixed $text
  * @return string
  */
 function js($text, bool $escape_slash = FALSE) : string {
@@ -61,7 +61,7 @@ function js($text, bool $escape_slash = FALSE) : string {
  *
  * @see js()
  *
- * @param $value
+ * @param mixed $value
  * @return string
  */
 function json($value, bool $escape_slash = FALSE) : string {
@@ -78,7 +78,7 @@ function json($value, bool $escape_slash = FALSE) : string {
 /**
  * Escape for URL
  *
- * @param $text
+ * @param string|mixed $text
  * @return string
  */
 function url($text) : string {
@@ -92,7 +92,7 @@ function url($text) : string {
  *
  * @see https://drafts.csswg.org/cssom/#serialize-an-identifier
  *
- * @param $text
+ * @param string|mixed $text
  * @return string
  */
 function css($text) : string {

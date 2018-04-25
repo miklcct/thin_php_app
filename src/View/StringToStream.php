@@ -10,7 +10,7 @@ use Psr\Http\Message\StreamInterface;
  *
  * Views are expected to use either StringToStream or StreamToString, but not both at the same time.
  *
- * @package Miklcct\ThinPhpApp\View
+ *
  */
 trait StringToStream {
     public function render() : StreamInterface {

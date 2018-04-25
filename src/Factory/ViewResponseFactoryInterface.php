@@ -1,14 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Miklcct\ThinPhpApp\View;
+namespace Miklcct\ThinPhpApp\Factory;
+use Miklcct\ThinPhpApp\View\View;
 use Psr\Http\Message\ResponseInterface;
 
 /**
- * Response factory to create from view
- *
- * Class ViewResponseFactory
- * @package Miklcct\ThinPhpApp\View
+ * Interface for factory generating response from view
  */
 interface ViewResponseFactoryInterface {
     /**

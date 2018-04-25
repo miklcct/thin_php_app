@@ -27,9 +27,9 @@ function exception_error_handler(int $severity, string $message, string $file, i
  * Get an exception handler for sending response from a given factory
  *
  * @param ExceptionResponseFactoryInterface $factory
- * @return \Closure
+ * @return callable
  */
-function get_exception_handler_from_response_factory(ExceptionResponseFactoryInterface $factory) {
+function get_exception_handler_from_response_factory(ExceptionResponseFactoryInterface $factory) : callable {
     return function (Throwable $exception) use ($factory) {
         send($factory($exception));
     };

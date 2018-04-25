@@ -13,9 +13,9 @@ use Interop\Http\Factory\StreamFactoryInterface;
  * If the template needs data, you are recommended to override the constructor such that the data is passed into
  * the view in the required types.
  *
- * @package Miklcct\ThinPhpApp\View
+ *
  */
-abstract class PhpTemplate implements Template {
+abstract class PhpTemplate extends Template {
     use StringToStream;
 
     public function __construct(StreamFactoryInterface $streamFactory) {
@@ -28,10 +28,6 @@ abstract class PhpTemplate implements Template {
         $result = ob_get_contents();
         ob_end_clean();
         return $result;
-    }
-
-    public function getContentType() : ?string {
-        return 'text/html; charset=utf-8';
     }
 
     protected function getStreamFactory() : StreamFactoryInterface {

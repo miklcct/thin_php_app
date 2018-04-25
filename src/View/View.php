@@ -12,7 +12,7 @@ use Psr\Http\Message\StreamInterface;
  * It is not possible to define such interface.
  * Instead, view data should be passed in the constructor and stored inside the view.
  *
- * @package Miklcct\ThinPhpApp\View
+ *
  */
 interface View {
     /**

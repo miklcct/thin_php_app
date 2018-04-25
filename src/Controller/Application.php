@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Miklcct\ThinPhpApp;
+namespace Miklcct\ThinPhpApp\Controller;
 use Closure;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -23,8 +23,6 @@ use Psr\Http\Server\RequestHandlerInterface;
  *
  * The legacy approach of directly instantiating the router and run it in the index.php is no longer recommended,
  * unless it implements <code>RequestHandlerInterface</code>
- *
- * @package Miklcct\ThinPhpApp
  */
 abstract class Application implements RequestHandlerInterface
 {

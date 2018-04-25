@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Miklcct\ThinPhpApp;
+namespace Miklcct\ThinPhpApp\Controller;
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -10,8 +10,6 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * An application with a middleware bounded
- *
- * @package Miklcct\ThinPhpApp
  */
 class MiddlewareApplication implements RequestHandlerInterface {
     /**
