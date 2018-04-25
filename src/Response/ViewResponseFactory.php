@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Miklcct\ThinPhpApp\Factory;
+namespace Miklcct\ThinPhpApp\Response;
 use Interop\Http\Factory\ResponseFactoryInterface;
 use Miklcct\ThinPhpApp\View\View;
 use Psr\Http\Message\ResponseInterface;

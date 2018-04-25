@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Miklcct\ThinPhpApp\Factory;
+namespace Miklcct\ThinPhpApp\Response;
 
 use Psr\Http\Message\ResponseInterface;
 use Throwable;

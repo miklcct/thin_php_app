@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Miklcct\ThinPhpApp;
+namespace Miklcct\ThinPhpApp\Exception;
 
 use ErrorException;
-use Miklcct\ThinPhpApp\Factory\ExceptionResponseFactoryInterface;
+use Miklcct\ThinPhpApp\Response\ExceptionResponseFactoryInterface;
 use Throwable;
 use function Http\Response\send;
 
@@ -33,15 +33,4 @@ function get_exception_handler_from_response_factory(ExceptionResponseFactoryInt
     return function (Throwable $exception) use ($factory) {
         send($factory($exception));
     };
-}
-
-/**
- * Run a callback on an object if it is not NULL
- *
- * @param $object
- * @param callable $callback
- * @return mixed|null
- */
-function nullable($object, callable $callback) {
-    return $object !== NULL ? $callback($object) : NULL;
 }

@@ -17,9 +17,11 @@
             "Miklcct\\ThinPhpApp\\" : "src/"
         },
         "files" : [
-            "src/Escapers/functions.php",
-            "src/functions.php",
-            "src/Http/functions.php"
+            "src/Escaper/functions.php",
+            "src/Response/functions.php",
+            "src/Request/functions.php",
+            "src/Exception/functions.php",
+            "src/Utility/functions.php"
         ]
     },
     "require": {
