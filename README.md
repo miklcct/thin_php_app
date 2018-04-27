@@ -86,6 +86,11 @@ Remember to call `parent::getMiddlewares()` inside the overridden method to inhe
 It is also easy to install global middlewares. Just extend the provided `Application` class, register your global
 middlewares, and implement your controllers on top of it.
 
+### Installing middlewares on existing application
+
+It is very easy to install middlewares on top of an existing PSR-15 application from another framework 
+even if you don't use the provided `Application` class. `MiddlewareApplication` class is provided for such purpose.
+
 ## View
 
 Views are defined as content with a content type. You need to implement `__toString()` (for string), `render()`
