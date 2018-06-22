@@ -133,7 +133,7 @@ All library codes are organised into the appropriate subfolder under `src` folde
 You **MUST** adhere to the following rules when making pull requests:
 * Follow the existing code style for existing files, but feel free to use any style for new files.
 * Place all code into a subfolder under `src` folder and namespace them. No global code, including global constants and functions are allowed.
-* All PHP code **MUST** have strict type checking (`declare(strict_types = 1)`) enabled.
+* All PHP code **MUST** have strict type checking (`declare(strict_types = 1);`) enabled.
 * No `eval` is allowed. This prohibition includes functions with `eval`-behaviour e.g. `preg_replace()` with `e` modifier, `create_function()` and the backtick operator.
 * No `goto` is allowed.
 * No undeclared properties or methods are allowed. This prohibition includes the use of magic, i.e. the following magic methods are not allowed:
@@ -160,10 +160,10 @@ You **MUST** adhere to the following rules when making pull requests:
     ````
     
     Only proven callables are allowed to be used in `callable` expression, which include:
-        * anonymous functions
-        * string literal (representing a free standing function or static class method)
-        * array containing an object and a string literal (representing a method inside an object)
-        * objects with `__invoke()` method
+    * anonymous functions
+    * string literal (representing a free standing function or static class method)
+    * array containing an object and a string literal (representing a method inside an object)
+    * objects with `__invoke()` method
         
 * Alternative control syntax is only allowed in `.phtml` templates and not allowed in regular `.php` files containing application logic.
 
