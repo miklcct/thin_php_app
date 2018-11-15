@@ -8,7 +8,6 @@ use InvalidArgumentException;
  * Escape text for HTML5
  *
  * @param string|mixed $text
- * @param callable|NULL $escaper
  * @return string
  */
 function html($text) : string {
@@ -39,6 +38,7 @@ function xml($text) : string {
  * @see json()
  *
  * @param string|mixed $text
+ * @param bool $escape_slash
  * @return string
  */
 function js($text, bool $escape_slash = FALSE) : string {
@@ -62,6 +62,7 @@ function js($text, bool $escape_slash = FALSE) : string {
  * @see js()
  *
  * @param mixed $value
+ * @param bool $escape_slash
  * @return string
  */
 function json($value, bool $escape_slash = FALSE) : string {
