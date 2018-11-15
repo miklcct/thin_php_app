@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 namespace Miklcct\ThinPhpApp\Exception;
 
-use function Http\Response\send;
 use Miklcct\ThinPhpApp\Response\ExceptionResponseFactoryInterface;
+use Miklcct\ThinPhpApp\Response\ResponseSenderInterface;
 use Throwable;
 
 /**
@@ -13,8 +13,12 @@ use Throwable;
  * Object of this class can be passed directly to <code>set_exception_handler()</code>
  */
 class ResponseFactoryExceptionHandler {
-    public function __construct(ExceptionResponseFactoryInterface $exceptionResponseFactory) {
+    public function __construct(
+        ExceptionResponseFactoryInterface $exceptionResponseFactory
+        , ResponseSenderInterface $responseSender
+    ) {
         $this->exceptionResponseFactory = $exceptionResponseFactory;
+        $this->responseSender = $responseSender;
     }
 
     /**
@@ -24,9 +28,14 @@ class ResponseFactoryExceptionHandler {
      */
     public function __invoke(Throwable $exception) {
         $factory = $this->exceptionResponseFactory;
-        send($factory($exception));
+        $send = $this->responseSender;
+        $send($factory($exception));
     }
 
     /** @var ExceptionResponseFactoryInterface */
     private $exceptionResponseFactory;
+    /**
+     * @var ResponseSenderInterface
+     */
+    private $responseSender;
 }
