@@ -23,6 +23,11 @@
             "src/Utility/functions.php"
         ]
     },
+    "autoload-dev": {
+        "psr-4" : {
+            "Miklcct\\ThinPhpApp\\Test\\" : "test/"
+        }
+    },
     "require": {
         "php" : ">=7.1",
         "ralouphie/getallheaders": "^2.0",
@@ -30,6 +35,7 @@
         "psr/http-server-middleware": "^1.0",
         "http-interop/http-factory": "^0.3.0",
         "shrikeh/teapot": "^2.3",
-        "http-interop/response-sender": "^1.0"
+        "http-interop/response-sender": "^1.0",
+        "phpunit/phpunit": "^7.4"
     }
 }
