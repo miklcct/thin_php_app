@@ -15,7 +15,7 @@ class ResponseFactoryExceptionHandlerTest extends TestCase {
         $exception = $this->createMock(Throwable::class);
         $response = $this->createMock(ResponseInterface::class);
         $factory = $this->createMock(ExceptionResponseFactoryInterface::class);
-        $factory->expects(self::once())->method('__invoke')->with(self::identicalTo($exception))->willReturn($response);
+        $factory->method('__invoke')->with(self::identicalTo($exception))->willReturn($response);
         $sender = $this->createMock(ResponseSenderInterface::class);
         $sender->expects(self::once())->method('__invoke')->with(self::identicalTo($response));
         $handler = new ResponseFactoryExceptionHandler($factory, $sender);

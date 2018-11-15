@@ -16,13 +16,13 @@ class ViewResponseFactoryTest extends TestCase {
         $stream = $this->createMock(StreamInterface::class);
         $empty_response = $this->createMock(ResponseInterface::class);
         $response = $this->createMock(ResponseInterface::class);
-
-        $view->expects(self::once())->method('render')->willReturn($stream);
+        $view->method('getContentType')->willReturn(NULL);
+        $view->method('render')->willReturn($stream);
         $response_factory = $this->createMock(ResponseFactoryInterface::class);
-        $response_factory->expects(self::once())->method('createResponse')
+        $response_factory->method('createResponse')
             ->with(self::identicalTo(200))
             ->willReturn($empty_response);
-        $empty_response->expects(self::once())->method('withBody')
+        $empty_response->method('withBody')
             ->with(self::identicalTo($stream))
             ->willReturn($response);
         $factory = new ViewResponseFactory($response_factory);
