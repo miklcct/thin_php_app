@@ -36,6 +36,7 @@
         "http-interop/http-factory": "^0.3.0",
         "shrikeh/teapot": "^2.3",
         "http-interop/response-sender": "^1.0",
-        "phpunit/phpunit": "^7.4"
+        "phpunit/phpunit": "^7.4",
+        "ext-json": "*"
     }
 }
