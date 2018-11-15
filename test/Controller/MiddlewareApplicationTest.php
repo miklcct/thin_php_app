@@ -11,41 +11,16 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 class MiddlewareApplicationTest extends TestCase {
+    use MiddlewaresTrait;
+
     public function testBindMultiple() {
         $request = $this->createMock(ServerRequestInterface::class);
         $count = 5;
-        $middleware_requests = array_map(
-            function () : ServerRequestInterface {
-                return $this->createMock(ServerRequestInterface::class);
-            },
-            range(0, $count - 1)
-        );
-        $middlewares = array_map(
-            function (int $position) use ($request, $middleware_requests) {
-                $middleware = $this->createMock(MiddlewareInterface::class);
-                $middleware
-                    ->expects(self::once())
-                    ->method('process')
-                    ->with(
-                        self::identicalTo($position ? $middleware_requests[$position - 1] : $request)
-                        , self::anything()
-                    )
-                    ->willReturnCallback(
-                        function (
-                            ServerRequestInterface $request,
-                            RequestHandlerInterface $request_handler
-                        ) use ($middleware_requests, $position) : ResponseInterface {
-                            return $request_handler->handle($middleware_requests[$position]);
-                        }
-                    );
-                return $middleware;
-            }
-            , range(0, $count - 1)
-        );
+        $middleware_set = $this->createMiddlewares($request, $count);
         $request_handler = $this->createMock(RequestHandlerInterface::class);
         $request_handler->expects(self::once())->method('handle')
-            ->with(self::identicalTo($middleware_requests[$count - 1]));
-        $app = MiddlewareApplication::bindMultiple($middlewares, $request_handler);
+            ->with(self::identicalTo($middleware_set->finalRequest));
+        $app = MiddlewareApplication::bindMultiple($middleware_set->middlewares, $request_handler);
         $app->handle($request);
     }
 
