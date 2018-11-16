@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 namespace Miklcct\ThinPhpApp\Response;
-use Interop\Http\Factory\ResponseFactoryInterface;
+use Psr\Http\Message\ResponseFactoryInterface;
 use Miklcct\ThinPhpApp\View\View;
 use Psr\Http\Message\ResponseInterface;
 

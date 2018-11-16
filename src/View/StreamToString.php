@@ -15,6 +15,6 @@ trait StreamToString {
     abstract public function render() : StreamInterface;
 
     public function __toString() : string {
-        return $this->render()->getContents();
+        return $this->render()->__toString();
     }
 }

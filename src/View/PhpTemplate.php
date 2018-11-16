@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 namespace Miklcct\ThinPhpApp\View;
-use Interop\Http\Factory\StreamFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
 
 /**
  * View for PHP templates (commonly stored as .phtml extension)
@@ -24,6 +24,7 @@ abstract class PhpTemplate extends Template {
 
     public function __toString() : string {
         ob_start();
+        /** @noinspection PhpIncludeInspection */
         require $this->getPathToTemplate();
         $result = ob_get_contents();
         ob_end_clean();

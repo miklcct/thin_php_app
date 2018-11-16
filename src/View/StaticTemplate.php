@@ -2,7 +2,7 @@
 declare(strict_types=1);
 
 namespace Miklcct\ThinPhpApp\View;
-use Interop\Http\Factory\StreamFactoryInterface;
+use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\StreamInterface;
 
 /**
