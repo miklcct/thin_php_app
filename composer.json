@@ -34,11 +34,11 @@
         "psr/http-server-middleware": "^1.0",
         "shrikeh/teapot": "^2.3",
         "http-interop/response-sender": "^1.0",
-        "phpunit/phpunit": "^7.4",
         "ext-json": "*",
         "psr/http-factory": "^1.0"
     },
     "require-dev": {
-        "zendframework/zend-diactoros": "^2.0"
+        "zendframework/zend-diactoros": "^2.0",
+        "phpunit/phpunit": "^7.4"
     }
 }
