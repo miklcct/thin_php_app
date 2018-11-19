@@ -19,7 +19,6 @@
         "files" : [
             "src/Escaper/functions.php",
             "src/Response/functions.php",
-            "src/Request/functions.php",
             "src/Utility/functions.php"
         ]
     },
