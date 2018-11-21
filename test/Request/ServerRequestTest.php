@@ -42,12 +42,6 @@ class ServerRequestTest extends ServerRequestIntegrationTest {
         self::assertSame($protocol, (new ServerRequest($original))->getProtocol());
     }
 
-    public function testGetMethod() {
-        $method = 'GET';
-        $original = $this->getStubRequest(['getMethod' => $method]);
-        self::assertSame($method, (new ServerRequest($original))->getMethod());
-    }
-
     public function testGetTime() {
         $time = microtime(TRUE);
         $original = $this->getRequestWithServer(['REQUEST_TIME_FLOAT' => $time]);
