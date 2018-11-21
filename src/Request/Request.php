@@ -9,6 +9,53 @@ use Psr\Http\Message\UriInterface;
 use function Miklcct\ThinPhpApp\Utility\nullable;
 
 class Request implements ServerRequestInterface {
+    public const DEFAULT_PORTS = [
+        'acap' => 674,
+        'afp' => 548,
+        'dict' => 2628,
+        'dns' => 53,
+        'file' => NULL,
+        'ftp' => 21,
+        'git' => 9418,
+        'gopher' => 70,
+        'http' => 80,
+        'https' => 443,
+        'imap' => 143,
+        'ipp' => 631,
+        'ipps' => 631,
+        'irc' => 194,
+        'ircs' => 6697,
+        'ldap' => 389,
+        'ldaps' => 636,
+        'mms' => 1755,
+        'msrp' => 2855,
+        'msrps' => NULL,
+        'mtqp' => 1038,
+        'nfs' => 111,
+        'nntp' => 119,
+        'nntps' => 563,
+        'pop' => 110,
+        'prospero' => 1525,
+        'redis' => 6379,
+        'rsync' => 873,
+        'rtsp' => 554,
+        'rtsps' => 322,
+        'rtspu' => 5005,
+        'sftp' => 22,
+        'smb' => 445,
+        'snmp' => 161,
+        'ssh' => 22,
+        'steam' => NULL,
+        'svn' => 3690,
+        'telnet' => 23,
+        'ventrilo' => 3784,
+        'vnc' => 5900,
+        'wais' => 210,
+        'ws' => 80,
+        'wss' => 443,
+        'xmpp' => NULL,
+    ];
+
     public function __construct(ServerRequestInterface $request) {
         $this->request = $request;
     }
@@ -65,10 +112,10 @@ class Request implements ServerRequestInterface {
     /**
      * Get the method of the request
      *
-     * @return null|string e.g. <code>"POST"</code>
+     * @return string e.g. <code>"POST"</code>
      */
-    public function getMethod() : ?string {
-        return $this->request->getServerParams()['REQUEST_METHOD'] ?? NULL;
+    public function getMethod() : string {
+        return $this->request->getMethod();
     }
 
     /**
@@ -287,12 +334,8 @@ class Request implements ServerRequestInterface {
      * @return bool|null
      */
     public function isOnDefaultPort() : ?bool {
-        return nullable(
-            $this->getServerPort()
-            , function (int $port) {
-                return $this->isSecure() ? $port === 443 : $port === 80;
-            }
-        );
+        $port = $this->getUri()->getPort();
+        return $port === NULL || $port === (static::DEFAULT_PORTS[$this->getUri()->getScheme()] ?? NULL);
     }
 
     /**
@@ -302,7 +345,7 @@ class Request implements ServerRequestInterface {
      */
     public function getServerPort() : ?int {
         return nullable(
-            $this->request->getServerParams()['SERVER_PORT']
+            $this->request->getServerParams()['SERVER_PORT'] ?? NULL
             , function ($x) {
                 return (int)$x;
             }
