@@ -1,8 +1,10 @@
 # Changelog
 
-## [0.3.0] - ????-??-??
+## [0.3.0] - 2018-11-21
 ### Added
  - `ServerRequest` class
+### Changed
+ - `nullable` now accepts a parameter which is used as the return value when the value is `NULL`
 ### Removed
  - Request helpers - use the new `ServerRequest` wrapper class instead
 
