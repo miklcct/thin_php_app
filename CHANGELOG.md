@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.0] - ????-??-??
+### Added
+ - `Request` class
+### Removed
+ - Request helpers - use the new `Request` wrapper class instead
+
 ## [0.2.0] - 2018-11-16
 ### Added
  - `ResponseSenderInterface` interface
