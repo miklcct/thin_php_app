@@ -63,6 +63,7 @@ function js($text, bool $escape_slash = FALSE) : string {
  *
  * @param mixed $value
  * @param bool $escape_slash
+ * @throws InvalidArgumentException if the value cannot be represented with JSON
  * @return string
  */
 function json($value, bool $escape_slash = FALSE) : string {
