@@ -8,7 +8,7 @@ use Psr\Http\Message\StreamInterface;
 use Psr\Http\Message\UriInterface;
 use function Miklcct\ThinPhpApp\Utility\nullable;
 
-class Request implements ServerRequestInterface {
+class ServerRequest implements ServerRequestInterface {
     public const DEFAULT_PORTS = [
         'acap' => 674,
         'afp' => 548,
