@@ -10,14 +10,14 @@ use Zend\Diactoros\StreamFactory;
 class PhpTemplateTest extends TestCase {
     public function test__toString() {
         $view = $this->getMockForAbstractClass(PhpTemplate::class, [new StreamFactory()]);
-        $view->method('getPathToTemplate')->willReturn(__DIR__ . '/test.php');
+        $view->method('getPathToTemplate')->willReturn(__DIR__ . '/test.phtml');
         $content = "Hello from " . __DIR__ . "/test.php";
         self::assertSame($content, $view->__toString());
     }
 
     public function testRender() {
         $view = $this->getMockForAbstractClass(PhpTemplate::class, [new StreamFactory()]);
-        $view->method('getPathToTemplate')->willReturn(__DIR__ . '/test.php');
+        $view->method('getPathToTemplate')->willReturn(__DIR__ . '/test.phtml');
         $content = "Hello from " . __DIR__ . "/test.php";
         self::assertSame($content, $view->render()->__toString());
     }
