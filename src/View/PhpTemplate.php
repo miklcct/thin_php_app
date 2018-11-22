@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Miklcct\ThinPhpApp\View;
 use Psr\Http\Message\StreamFactoryInterface;
+use RuntimeException;
+use function is_string;
 
 /**
  * View for PHP templates (commonly stored as .phtml extension)
@@ -27,6 +29,9 @@ abstract class PhpTemplate extends Template {
         /** @noinspection PhpIncludeInspection */
         require $this->getPathToTemplate();
         $result = ob_get_contents();
+        if (!is_string($result)) {
+            throw new RuntimeException('output buffering does not work correctly.');
+        }
         ob_end_clean();
         return $result;
     }

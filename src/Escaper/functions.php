@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace Miklcct\ThinPhpApp\Escaper;
 use InvalidArgumentException;
+use RuntimeException;
 
 /**
  * Escape text for HTML5
@@ -42,8 +43,12 @@ function xml($text) : string {
  * @return string
  */
 function js($text, bool $escape_slash = FALSE) : string {
-    $result = json((string)$text, $escape_slash);
-    return preg_replace("#'#u", "\\'", substr($result, 1, -1));
+    $json = json((string)$text, $escape_slash);
+    $result = preg_replace("#'#u", "\\'", substr($json, 1, -1));
+    if ($result === NULL) {
+        throw new RuntimeException('preg_replace() does not work properly');
+    }
+    return $result;
 }
 
 /**
@@ -71,8 +76,11 @@ function json($value, bool $escape_slash = FALSE) : string {
         $value
         , JSON_UNESCAPED_UNICODE | ($escape_slash ? JSON_UNESCAPED_SLASHES : 0) | JSON_PRESERVE_ZERO_FRACTION
     );
-    if (json_last_error()) {
-        throw new InvalidArgumentException(json_last_error_msg());
+    if ($result === FALSE) {
+        if (json_last_error()) {
+            throw new InvalidArgumentException(json_last_error_msg());
+        }
+        throw new RuntimeException('json_encode() does not perform properly');
     }
     return $result;
 }
