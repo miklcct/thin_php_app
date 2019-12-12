@@ -3,19 +3,18 @@ declare(strict_types=1);
 
 namespace Miklcct\ThinPhpApp\Test\Utility;
 
-use function Miklcct\ThinPhpApp\Utility\nullable;
 use PHPUnit\Framework\TestCase;
+use function Miklcct\ThinPhpApp\Utility\nullable;
 
 class FunctionsTest extends TestCase {
     public function testNullableNull() {
         self::assertSame(
-            'test'
+            NULL
             , nullable(
                 NULL
                 , function (int $x) {
                     return $x + 1;
                 }
-                , 'test'
             )
         );
     }
@@ -28,7 +27,6 @@ class FunctionsTest extends TestCase {
                 , function (int $x) {
                     return $x + 1;
                 }
-                , 'test'
             )
         );
     }

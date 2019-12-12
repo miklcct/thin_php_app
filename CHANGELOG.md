@@ -1,4 +1,9 @@
 # Changelog
+## [0.4.0] - 2019-12-12
+### Changed
+ - **BREAKING**: `nullable` no longer accepts the third parameter - use `??` after
+   the `nullable` call to specify the default value when the value is `NULL`
+   such that it is evaluated only when it is `NULL`.
 
 ## [0.3.0] - 2018-11-21
 ### Added
