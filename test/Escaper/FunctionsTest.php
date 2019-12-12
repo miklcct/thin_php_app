@@ -3,7 +3,7 @@ declare(strict_types=1);
 
 namespace Miklcct\ThinPhpApp\Test\Escaper;
 
-use InvalidArgumentException;
+use JsonException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 use function Miklcct\ThinPhpApp\Escaper\css;
@@ -61,7 +61,7 @@ class FunctionsTest extends TestCase {
     public function testJsonSelfReferencingObject() {
         $object = new stdClass;
         $object->foo = $object;
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(JsonException::class);
         json($object);
     }
 

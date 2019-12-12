@@ -1,4 +1,10 @@
 # Changelog
+## [0.5.0] - 20??-??-??
+### Changed
+ - **BREAKING**: `json` now throws `JsonException` instead of `InvalidArgumentException`
+ if the supplied argument cannot be properly represented as JSON.
+ A polyfill has been added to support this pre PHP 7.3.
+
 ## [0.4.0] - 2019-12-12
 ### Changed
  - **BREAKING**: `nullable` no longer accepts the third parameter - use `??` after

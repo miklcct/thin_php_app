@@ -35,7 +35,8 @@
         "shrikeh/teapot": "^2.3",
         "http-interop/response-sender": "^1.0",
         "ext-json": "*",
-        "psr/http-factory": "^1.0"
+        "psr/http-factory": "^1.0",
+        "symfony/polyfill-php73": "^1.13"
     },
     "require-dev": {
         "zendframework/zend-diactoros": "^2.0",

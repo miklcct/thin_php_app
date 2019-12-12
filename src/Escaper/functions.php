@@ -2,8 +2,11 @@
 declare(strict_types=1);
 
 namespace Miklcct\ThinPhpApp\Escaper;
-use InvalidArgumentException;
+use JsonException;
 use RuntimeException;
+use function json_last_error;
+use const JSON_THROW_ON_ERROR;
+use const PHP_VERSION_ID;
 
 /**
  * Escape text for HTML5
@@ -36,11 +39,12 @@ function xml($text) : string {
  * If the value is to be inserted into inline event handlers (e.g. onclick attribute), please also escape it with
  * {@link html()}.
  *
- * @see json()
- *
  * @param string|mixed $text
  * @param bool $escape_slash
  * @return string
+ * @throws JsonException
+ * @see json()
+ *
  */
 function js($text, bool $escape_slash = FALSE) : string {
     $json = json((string)$text, $escape_slash);
@@ -68,17 +72,19 @@ function js($text, bool $escape_slash = FALSE) : string {
  *
  * @param mixed $value
  * @param bool $escape_slash
- * @throws InvalidArgumentException if the value cannot be represented with JSON
+ * @throws JsonException if the value cannot be represented with JSON
  * @return string
  */
 function json($value, bool $escape_slash = FALSE) : string {
-    $result = json_encode(
-        $value
-        , JSON_UNESCAPED_UNICODE | ($escape_slash ? JSON_UNESCAPED_SLASHES : 0) | JSON_PRESERVE_ZERO_FRACTION
-    );
+    $options = JSON_UNESCAPED_UNICODE | ($escape_slash ? JSON_UNESCAPED_SLASHES : 0) | JSON_PRESERVE_ZERO_FRACTION;
+    if (PHP_VERSION_ID >= '70300') {
+        $options |= JSON_THROW_ON_ERROR;
+    }
+    $result = json_encode($value, $options);
     if ($result === FALSE) {
-        if (json_last_error()) {
-            throw new InvalidArgumentException(json_last_error_msg());
+        $error = json_last_error();
+        if ($error) {
+            throw new JsonException(json_last_error_msg(), $error);
         }
         throw new RuntimeException('json_encode() does not perform properly');
     }
