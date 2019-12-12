@@ -30,7 +30,12 @@ abstract class PhpTemplate extends Template {
         require $this->getPathToTemplate();
         $result = ob_get_contents();
         if (!is_string($result)) {
-            throw new RuntimeException('output buffering does not work correctly.');
+            if (PHP_VERSION_ID >= 70400) {
+                /** @noinspection PhpLanguageLevelInspection */
+                throw new RuntimeException('output buffering does not work correctly.');
+            } else {
+                return '';
+            }
         }
         ob_end_clean();
         return $result;
