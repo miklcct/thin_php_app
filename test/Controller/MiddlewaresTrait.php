@@ -42,7 +42,7 @@ trait MiddlewaresTrait {
                     ->expects(self::once())
                     ->method('process')
                     ->with(
-                        self::identicalTo($position ? $middleware_requests[$position - 1] : $original_request)
+                        self::identicalTo($position !== 0 ? $middleware_requests[$position - 1] : $original_request)
                         , self::anything()
                     )
                     ->willReturnCallback(

@@ -8,11 +8,10 @@ use function Miklcct\ThinPhpApp\Utility\nullable;
 
 class FunctionsTest extends TestCase {
     public function testNullableNull() : void {
-        self::assertSame(
-            NULL
-            , nullable(
+        self::assertNull(
+            nullable(
                 NULL
-                , function (int $x) {
+                , static function (int $x) : int {
                     return $x + 1;
                 }
             )
@@ -24,7 +23,7 @@ class FunctionsTest extends TestCase {
             3
             , nullable(
                 2
-                , function (int $x) {
+                , static function (int $x) : int {
                     return $x + 1;
                 }
             )
