@@ -359,7 +359,8 @@ class ServerRequest implements ServerRequestInterface {
      * @return bool
      */
     public function isSecure() : bool {
-        return !empty($this->request->getServerParams()['HTTPS']) && $this->request->getServerParams()['HTTPS'] !== 'off';
+        return isset($this->request->getServerParams()['HTTPS'])
+            && !in_array($this->request->getServerParams()['HTTPS'], [0, '', 'off'], TRUE);
     }
 
     /**
