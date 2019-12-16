@@ -42,7 +42,8 @@
         "zendframework/zend-diactoros": "^2.0",
         "phpunit/phpunit": "^7.4",
         "php-http/psr7-integration-tests": "dev-master#031eb86",
-        "phpstan/phpstan": "^0.10.5",
-        "phpstan/phpstan-phpunit": "^0.10.0"
+        "phpstan/phpstan": "^0.12.3",
+        "phpstan/phpstan-phpunit": "^0.12.1",
+        "phpstan/phpstan-strict-rules": "^0.12.0"
     }
 }
