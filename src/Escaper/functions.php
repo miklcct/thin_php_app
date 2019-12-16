@@ -83,7 +83,7 @@ function json($value, bool $escape_slash = FALSE) : string {
     $result = json_encode($value, $options);
     if ($result === FALSE) {
         $error = json_last_error();
-        if ($error) {
+        if ($error !== 0) {
             throw new JsonException(json_last_error_msg(), $error);
         }
         throw new RuntimeException('json_encode() does not perform properly');

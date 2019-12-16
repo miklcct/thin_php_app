@@ -202,7 +202,7 @@ class ServerRequest implements ServerRequestInterface {
     public function getClientPort() : ?int {
         return nullable(
             $this->request->getServerParams()['REMOTE_PORT']
-            , function ($x) {
+            , static function ($x) : int {
                 return (int)$x;
             }
         );
@@ -347,7 +347,7 @@ class ServerRequest implements ServerRequestInterface {
     public function getServerPort() : ?int {
         return nullable(
             $this->request->getServerParams()['SERVER_PORT'] ?? NULL
-            , function ($x) {
+            , static function ($x) : int {
                 return (int)$x;
             }
         );

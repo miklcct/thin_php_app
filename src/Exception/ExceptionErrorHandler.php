@@ -21,7 +21,7 @@ class ExceptionErrorHandler {
      * @throws ErrorException
      */
     function __invoke(int $severity, string $message, string $file, int $line) : void {
-        if (error_reporting() & $severity) {
+        if ((error_reporting() & $severity) !== 0) {
             throw new ErrorException($message, 0, $severity, $file, $line);
         }
     }
