@@ -5,14 +5,32 @@ namespace Miklcct\ThinPhpApp\Test\View;
 
 use Miklcct\ThinPhpApp\View\StringToStream;
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\StreamFactoryInterface;
+use Psr\Http\Message\StreamInterface;
 use Zend\Diactoros\StreamFactory;
 
 class StringToStreamTest extends TestCase {
     public function testRender() : void {
         $string = 'test';
-        $iut = $this->getMockForTrait(StringToStream::class);
-        $iut->method('__toString')->willReturn($string);
-        $iut->method('getStreamFactory')->willReturn(new StreamFactory());
-        self::assertSame($string, $iut->render()->__toString());
+        $iut = new class($string) {
+            use StringToStream;
+            public function __construct(string $string) {
+                $this->string = $string;
+            }
+
+            public function __toString() : string {
+                return $this->string;
+            }
+
+            protected function getStreamFactory() : StreamFactoryInterface {
+                return new StreamFactory();
+            }
+
+            /** @var string */
+            private $string;
+        };
+        /** @var StreamInterface $result */
+        $result = $iut->render();
+        self::assertSame($string, $result->__toString());
     }
 }
