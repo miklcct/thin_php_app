@@ -15,18 +15,18 @@ class ExceptionErrorHandlerTest extends TestCase {
     /** @var int */
     private $error_reporting;
 
-    protected function setUp() {
+    protected function setUp() : void {
         parent::setUp();
         $this->exception = new ErrorException('test', 0, E_NOTICE);
         $this->error_reporting = error_reporting();
     }
 
-    protected function tearDown() {
+    protected function tearDown() : void {
         error_reporting($this->error_reporting);
         parent::tearDown();
     }
 
-    public function testPositive() {
+    public function testPositive() : void {
         error_reporting($this->exception->getSeverity());
         $this->expectExceptionObject($this->exception);
         $handler = new ExceptionErrorHandler();
@@ -38,7 +38,7 @@ class ExceptionErrorHandlerTest extends TestCase {
         );
     }
 
-    public function testNegative() {
+    public function testNegative() : void {
         error_reporting(~$this->exception->getSeverity());
         $this->expectNotToPerformAssertions();
         $handler = new ExceptionErrorHandler();

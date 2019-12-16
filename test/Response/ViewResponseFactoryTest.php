@@ -10,7 +10,7 @@ use Psr\Http\Message\StreamInterface;
 use Zend\Diactoros\ResponseFactory;
 
 class ViewResponseFactoryTest extends TestCase {
-    public function testWithoutContentType() {
+    public function testWithoutContentType() : void {
         $view = $this->createMock(View::class);
         $stream = $this->createMock(StreamInterface::class);
         $view->method('getContentType')->willReturn(NULL);
@@ -22,7 +22,7 @@ class ViewResponseFactoryTest extends TestCase {
         self::assertSame($stream, $result->getBody());
     }
 
-    public function testWithContentType() {
+    public function testWithContentType() : void {
         $view = $this->createMock(View::class);
         $stream = $this->createMock(StreamInterface::class);
         $content_type = 'text/plain';

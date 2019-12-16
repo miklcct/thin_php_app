@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 use Zend\Diactoros\StreamFactory;
 
 class StringToStreamTest extends TestCase {
-    public function testRender() {
+    public function testRender() : void {
         $string = 'test';
         $iut = $this->getMockForTrait(StringToStream::class);
         $iut->method('__toString')->willReturn($string);

@@ -14,62 +14,62 @@ use function Miklcct\ThinPhpApp\Escaper\url;
 use function Miklcct\ThinPhpApp\Escaper\xml;
 
 class FunctionsTest extends TestCase {
-    public function testHtml() {
+    public function testHtml() : void {
         self::assertSame('F &amp; B', html('F & B'));
     }
 
-    public function testXml() {
+    public function testXml() : void {
         self::assertSame('F &amp; B', xml('F & B'));
     }
 
-    public function testJs() {
+    public function testJs() : void {
         self::assertSame('\\"\\\'\\"', js('"\'"'));
     }
 
-    public function testJsonNull() {
+    public function testJsonNull() : void {
         self::assertSame('null', json(NULL));
     }
 
-    public function testJsonInteger() {
+    public function testJsonInteger() : void {
         self::assertSame('-3', json(-3));
     }
 
-    public function testJsonFloat() {
+    public function testJsonFloat() : void {
         self::assertSame('0.0', json(0.0));
     }
 
-    public function testJsonBoolean() {
+    public function testJsonBoolean() : void {
         self::assertSame('true', json(TRUE));
     }
 
-    public function testJsonString() {
+    public function testJsonString() : void {
         $string = "123\"\"/\\\\n&外الْأَبْجَدِيَّة";
         self::assertSame($string, json_decode(json($string)));
     }
 
-    public function testJsonArray() {
+    public function testJsonArray() : void {
         $array = ['foo', 'bar', 'baz'];
         self::assertSame($array, json_decode(json($array)));
     }
 
-    public function testJsonObject() {
+    public function testJsonObject() : void {
         $object = new stdClass;
         $object->foo = 'bar';
         self::assertEquals($object, json_decode(json($object)));
     }
 
-    public function testJsonSelfReferencingObject() {
+    public function testJsonSelfReferencingObject() : void {
         $object = new stdClass;
         $object->foo = $object;
         $this->expectException(JsonException::class);
         json($object);
     }
 
-    public function testUrl() {
+    public function testUrl() : void {
         self::assertSame('F%20%26%20B', url('F & B'));
     }
 
-    public function testCss() {
+    public function testCss() : void {
         self::assertSame('F\\ \\&\\ B', css('F & B'));
     }
 }

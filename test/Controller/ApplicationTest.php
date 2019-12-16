@@ -11,7 +11,7 @@ use Psr\Http\Message\ServerRequestInterface;
 
 class ApplicationTest extends TestCase {
     use MiddlewaresTrait;
-    public function testHandle() {
+    public function testHandle() : void {
         $app = $this->getMockBuilder(Application::class)
             ->setMethods(['run', 'getMiddlewares'])
             ->getMock();

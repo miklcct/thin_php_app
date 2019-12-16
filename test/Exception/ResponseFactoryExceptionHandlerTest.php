@@ -11,7 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 use Throwable;
 
 class ResponseFactoryExceptionHandlerTest extends TestCase {
-    public function test() {
+    public function test() : void {
         $exception = $this->createMock(Throwable::class);
         $response = $this->createMock(ResponseInterface::class);
         $factory = $this->createMock(ExceptionResponseFactoryInterface::class);

@@ -7,7 +7,7 @@ use PHPUnit\Framework\TestCase;
 use function Miklcct\ThinPhpApp\Utility\nullable;
 
 class FunctionsTest extends TestCase {
-    public function testNullableNull() {
+    public function testNullableNull() : void {
         self::assertSame(
             NULL
             , nullable(
@@ -19,7 +19,7 @@ class FunctionsTest extends TestCase {
         );
     }
 
-    public function testNullableNotNull() {
+    public function testNullableNotNull() : void {
         self::assertSame(
             3
             , nullable(

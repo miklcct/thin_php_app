@@ -13,7 +13,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 class MiddlewareApplicationTest extends TestCase {
     use MiddlewaresTrait;
 
-    public function testBindMultiple() {
+    public function testBindMultiple() : void {
         $request = $this->createMock(ServerRequestInterface::class);
         $count = 5;
         $middleware_set = $this->createMiddlewares($request, $count);
@@ -24,7 +24,7 @@ class MiddlewareApplicationTest extends TestCase {
         $app->handle($request);
     }
 
-    public function testHandle() {
+    public function testHandle() : void {
         $request = $this->createMock(ServerRequestInterface::class);
         $response = $this->createMock(ResponseInterface::class);
         $request_handler = $this->createMock(RequestHandlerInterface::class);
