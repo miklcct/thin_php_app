@@ -26,7 +26,7 @@ class ResponseFactoryExceptionHandler {
      *
      * @param Throwable $exception
      */
-    public function __invoke(Throwable $exception) {
+    public function __invoke(Throwable $exception) : void {
         $factory = $this->exceptionResponseFactory;
         $send = $this->responseSender;
         $send($factory($exception));

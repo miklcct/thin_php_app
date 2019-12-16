@@ -15,7 +15,7 @@ class MiddlewareApplication implements RequestHandlerInterface {
     /**
      * Bind multiple middlewares on top of an application
      *
-     * @param array $middlewares Middleware sorted from the outermost (first in last out).
+     * @param MiddlewareInterface[] $middlewares Middleware sorted from the outermost (first in last out).
      * @param RequestHandlerInterface $application The original application
      * @return RequestHandlerInterface The application with the middlewares added
      */
