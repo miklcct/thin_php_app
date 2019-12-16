@@ -57,7 +57,7 @@ class ServerRequest implements ServerRequestInterface {
         'xmpp' => NULL,
     ];
 
-    public function __construct(ServerRequestInterface $request) {
+    public final function __construct(ServerRequestInterface $request) {
         $this->request = $request;
     }
 

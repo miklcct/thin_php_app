@@ -35,7 +35,7 @@ class MiddlewareApplication implements RequestHandlerInterface {
      * @param MiddlewareInterface $middleware
      * @param RequestHandlerInterface $application
      */
-    public function __construct(MiddlewareInterface $middleware, RequestHandlerInterface $application) {
+    public final function __construct(MiddlewareInterface $middleware, RequestHandlerInterface $application) {
         $this->middleware = $middleware;
         $this->application = $application;
     }

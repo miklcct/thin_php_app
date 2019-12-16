@@ -4,6 +4,8 @@
  - **BREAKING**: `json` now throws `JsonException` instead of `InvalidArgumentException`
  if the supplied argument cannot be properly represented as JSON.
  A polyfill has been added to support this pre PHP 7.3.
+ - **BREAKING**: The constructors of `ServerRequest` and `MiddlewareApplication` are now final because other methods
+ are using `new static` to call them.
 
 ## [0.4.0] - 2019-12-12
 ### Changed
