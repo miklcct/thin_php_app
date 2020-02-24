@@ -2,9 +2,12 @@
 declare(strict_types=1);
 
 namespace Miklcct\ThinPhpApp\View;
+use ExceptionWithThrowable;
 use Psr\Http\Message\StreamFactoryInterface;
 use RuntimeException;
+use Throwable;
 use function is_string;
+use function ob_end_clean;
 
 /**
  * View for PHP templates (commonly stored as .phtml extension)
@@ -26,19 +29,22 @@ abstract class PhpTemplate extends Template {
 
     public function __toString() : string {
         ob_start();
-        /** @noinspection PhpIncludeInspection */
-        require $this->getPathToTemplate();
-        $result = ob_get_contents();
-        if (!is_string($result)) {
-            if (PHP_VERSION_ID >= 70400) {
-                /** @noinspection PhpLanguageLevelInspection */
-                throw new RuntimeException('output buffering does not work correctly.');
-            } else {
-                return '';
+        try {
+            /** @noinspection PhpIncludeInspection */
+            require $this->getPathToTemplate();
+            $result = ob_get_contents();
+            if (!is_string($result)) {
+                if (PHP_VERSION_ID >= 70400) {
+                    /** @noinspection PhpLanguageLevelInspection */
+                    throw new RuntimeException('output buffering does not work correctly.');
+                } else {
+                    return '';
+                }
             }
+            return $result;
+        } finally {
+            ob_end_clean();
         }
-        ob_end_clean();
-        return $result;
     }
 
     protected function getStreamFactory() : StreamFactoryInterface {
