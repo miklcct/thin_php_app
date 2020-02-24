@@ -1,0 +1,12 @@
+<?php
+declare(strict_types=1);
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Error page</title>
+    </head>
+    <body>
+        <div><?php throw new RuntimeException('Testing exception') ?> </div>
+    </body>
+</html>
