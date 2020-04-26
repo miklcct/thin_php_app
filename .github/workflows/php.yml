@@ -30,7 +30,7 @@ jobs:
           name: vendor
           path: vendor
       - name: PHPUnit test
-        run: vendor/bin/phpunit test
+        run: php vendor/bin/phpunit test
 
   phpstan:
     runs-on: ubuntu-latest
@@ -42,4 +42,4 @@ jobs:
           name: vendor
           path: vendor
       - name: PHPUnit test
-        run: vendor/bin/phpstan analyse src test
+        run: php vendor/bin/phpstan analyse src test
