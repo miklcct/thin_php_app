@@ -5,36 +5,21 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - run: composer validate
-      - run: composer install --prefer-dist --no-progress --no-suggest
-      - run: tar --xz -cf dependencies.tar.xz vendor composer.lock
-      - uses: actions/upload-artifact@v1
-        with:
-          name: dependencies
-          path: dependencies.tar.xz
-
   test:
-    runs-on: ubuntu-latest
-    needs: build
+    strategy:
+      matrix:
+        php: [php7.1, php7.2, php7.3, php7.4]
+      fail-fast: false
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v1
-        with:
-          name: dependencies
-      - run: tar --xz -xf dependencies/dependencies.tar.xz
-      - run: php vendor/bin/phpunit test
+      - run: ${{matrix.php}} composer validate
+      - run: ${{matrix.php}} composer install --prefer-dist --no-progress --no-suggest
+      - run: ${{matrix.php}} vendor/bin/phpunit test
 
   phpstan:
     runs-on: ubuntu-latest
-    needs: build
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v1
-        with:
-          name: dependencies
-      - run: tar --xz -xf dependencies/dependencies.tar.xz
+      - run: composer install --prefer-dist --no-progress --no-suggest
       - run: php vendor/bin/phpstan analyse src test
