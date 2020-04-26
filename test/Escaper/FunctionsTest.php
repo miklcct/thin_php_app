@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpElementIsNotAvailableInCurrentPhpVersionInspection */
 declare(strict_types=1);
 
 namespace Miklcct\ThinPhpApp\Test\Escaper;
