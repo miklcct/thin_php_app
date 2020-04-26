@@ -13,8 +13,8 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - run: ${{matrix.php}} composer validate
-      - run: ${{matrix.php}} composer install --prefer-dist --no-progress --no-suggest
+      - run: ${{matrix.php}} /usr/bin/composer validate
+      - run: ${{matrix.php}} /usr/bin/composer install --prefer-dist --no-progress --no-suggest
       - run: ${{matrix.php}} vendor/bin/phpunit test
 
   phpstan:
