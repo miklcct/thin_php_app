@@ -25,7 +25,7 @@ jobs:
       - uses: actions/download-artifact@v1
         with:
           name: dependencies
-      - run: tar --xz -xf dependencies.tar.xz
+      - run: tar --xz -xf dependencies/dependencies.tar.xz
       - run: php vendor/bin/phpunit test
 
   phpstan:
@@ -36,5 +36,5 @@ jobs:
       - uses: actions/download-artifact@v1
         with:
           name: dependencies
-      - run: tar --xz -xf dependencies.tar.xz
+      - run: tar --xz -xf dependencies/dependencies.tar.xz
       - run: php vendor/bin/phpstan analyse src test
