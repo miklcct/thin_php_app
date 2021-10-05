@@ -1,4 +1,5 @@
 <?php
+/** @noinspection PhpElementIsNotAvailableInCurrentPhpVersionInspection */
 declare(strict_types=1);
 
 namespace Miklcct\ThinPhpApp\Escaper;
@@ -133,9 +134,9 @@ function css($text) : string {
             $code >= 0x80
             || $char === '-'
             || $char === '_'
-            || ($code >= 0x30 && $code <= 0x39)
-            || ($code >= 0x41 && $code <= 0x5a)
-            || ($code >= 0x61 && $code <= 0x7a)
+            || $code >= 0x30 && $code <= 0x39
+            || $code >= 0x41 && $code <= 0x5a
+            || $code >= 0x61 && $code <= 0x7a
         ) {
             $result .= $char;
         } else {

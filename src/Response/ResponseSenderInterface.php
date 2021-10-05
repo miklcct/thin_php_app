@@ -11,6 +11,7 @@ use Psr\Http\Message\ResponseInterface;
 interface ResponseSenderInterface {
     /**
      * Send a response
+     * @param ResponseInterface $response
      */
     public function __invoke(ResponseInterface $response) : void;
 }

@@ -1,0 +1,25 @@
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        php: [php7.1, php7.2, php7.3, php7.4]
+      fail-fast: false
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+      - run: ${{matrix.php}} /usr/bin/composer validate
+      - run: ${{matrix.php}} /usr/bin/composer install --prefer-dist --no-progress --no-suggest
+      - run: ${{matrix.php}} vendor/bin/phpunit test
+
+  phpstan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: composer install --prefer-dist --no-progress --no-suggest
+      - run: php vendor/bin/phpstan analyse src test
