@@ -7,7 +7,7 @@ use Miklcct\ThinPhpApp\View\StringToStream;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamFactoryInterface;
 use Psr\Http\Message\StreamInterface;
-use Zend\Diactoros\StreamFactory;
+use Laminas\Diactoros\StreamFactory;
 
 class StringToStreamTest extends TestCase {
     public function testRender() : void {

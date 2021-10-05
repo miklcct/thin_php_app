@@ -7,7 +7,7 @@ use Miklcct\ThinPhpApp\Response\ViewResponseFactory;
 use Miklcct\ThinPhpApp\View\View;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
-use Zend\Diactoros\ResponseFactory;
+use Laminas\Diactoros\ResponseFactory;
 
 class ViewResponseFactoryTest extends TestCase {
     public function testWithoutContentType() : void {

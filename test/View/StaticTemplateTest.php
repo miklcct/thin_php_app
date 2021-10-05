@@ -5,7 +5,7 @@ namespace Miklcct\ThinPhpApp\Test\View;
 
 use Miklcct\ThinPhpApp\View\StaticTemplate;
 use PHPUnit\Framework\TestCase;
-use Zend\Diactoros\StreamFactory;
+use Laminas\Diactoros\StreamFactory;
 
 class StaticTemplateTest extends TestCase {
     public function test__toString() : void {

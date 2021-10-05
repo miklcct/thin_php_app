@@ -6,7 +6,7 @@ namespace Miklcct\ThinPhpApp\Test\Request;
 use Http\Psr7Test\ServerRequestIntegrationTest;
 use Miklcct\ThinPhpApp\Request\ServerRequest;
 use Psr\Http\Message\ServerRequestInterface;
-use Zend\Diactoros\ServerRequest as ZendServerRequest;
+use Laminas\Diactoros\ServerRequest as ZendServerRequest;
 
 class ServerRequestTest extends ServerRequestIntegrationTest {
     public function createSubject() : ServerRequest {

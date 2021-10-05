@@ -6,7 +6,7 @@ namespace Miklcct\ThinPhpApp\Test\View;
 use Miklcct\ThinPhpApp\View\StreamToString;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\StreamInterface;
-use Zend\Diactoros\StreamFactory;
+use Laminas\Diactoros\StreamFactory;
 
 class StreamToStringTest extends TestCase {
     public function test__toString() : void {

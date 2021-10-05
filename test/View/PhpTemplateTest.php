@@ -7,7 +7,7 @@ use ErrorException;
 use Miklcct\ThinPhpApp\View\PhpTemplate;
 use PHPUnit\Framework\TestCase;
 use Throwable;
-use Zend\Diactoros\StreamFactory;
+use Laminas\Diactoros\StreamFactory;
 use function ob_get_contents;
 use function ob_get_level;
 
@@ -26,7 +26,7 @@ class PhpTemplateTest extends TestCase {
         self::assertSame($content, $view->render()->__toString());
     }
 
-    public function test__toStringDoesntLeakOutputBufferUnderException() {
+    public function test__toStringDoesntLeakOutputBufferUnderException() : void {
         $view = $this->getMockForAbstractClass(PhpTemplate::class, [new StreamFactory()]);
         $view->method('getPathToTemplate')->willReturn(__DIR__ . '/error.phtml');
         $level = ob_get_level();
