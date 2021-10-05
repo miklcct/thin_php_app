@@ -1,6 +1,7 @@
 # Changelog
-## [0.6.0] - 2021-10-05
+## [0.6.1] - 2021-10-05
  - PHP 8 compatibility
+ 
 ## [0.5.0] - 2020-02-24
 ### Changed
  - **BREAKING**: `json` now throws `JsonException` instead of `InvalidArgumentException`
