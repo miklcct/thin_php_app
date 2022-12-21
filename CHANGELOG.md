@@ -1,4 +1,7 @@
 # Changelog
+## [0.6.2] - 2022-12-21
+ - allow the use of ralouphie/getallheaders version 3
+
 ## [0.6.1] - 2021-10-05
  - PHP 8 compatibility
  
